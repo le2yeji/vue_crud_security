@@ -1,7 +1,8 @@
 import { defineStore, acceptHMRUpdate } from 'pinia';
 import { fetchWrapper } from '@/helpers';
 
-const baseUrl = `${import.meta.env.VITE_API_URL}/api/v1/employees`;
+//const baseUrl = `${import.meta.env.VITE_API_URL}/api/v1/employees`;
+const baseUrl = `/api/v1/employees`;
 
 export const useEmployeeStore = defineStore('employee', {
   state: () => ({
@@ -36,7 +37,8 @@ export const useEmployeeStore = defineStore('employee', {
     async deleteEmployee(id) {
       try {
         this.isLoading = true;
-        const deletedEmployee = await fetchWrapper.post(`${import.meta.env.VITE_API_URL}/api/v1/employee/${id}`);
+        //const deletedEmployee = await fetchWrapper.post(`${import.meta.env.VITE_API_URL}/api/v1/employee/${id}`);
+        const deletedEmployee = await fetchWrapper.post(`/api/v1/employee/${id}`);
         this.employees = this.employees.filter((t) => t.id !== deletedEmployee.id);
       } catch (error) {
         console.log(error);
