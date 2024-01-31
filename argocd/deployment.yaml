@@ -18,7 +18,7 @@ spec:
         image: yyazi/vue_crud
         imagePullPolicy: Always
         env:
-          - name: SPRING_PROFILES_ACTIVE
-            value: "local"
+          - name: BACKEND_API_URL
+            value: "backend"
         ports:
         - containerPort: 8080
