@@ -19,6 +19,6 @@ spec:
         imagePullPolicy: Always
         env:
           - name: BACKEND_API_URL
-            value: "backend"
+            value: "employee-backend"
         ports:
         - containerPort: 8080
