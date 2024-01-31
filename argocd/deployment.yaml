@@ -15,7 +15,8 @@ spec:
     spec:
       containers:
       - name: frontend-springboot
-        image: yyazi/vue_crud
+        #image: yyazi/vue_crud
+        image: ghcr.io/shclub/vue3:v1
         imagePullPolicy: Always
         env:
           - name: BACKEND_API_URL
