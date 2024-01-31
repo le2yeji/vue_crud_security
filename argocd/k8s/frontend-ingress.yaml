@@ -1,20 +1,20 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: frontend-ingress
+  name: ingress-frontend
   annotations:
-    kubernetes.io/ingress.class: “nginx”
+    kubernetes.io/ingress.class: "nginx"
+    ingressclass.kubernetes.io/is-default-class: "true"
     ingress.kubernetes.io/rewrite-target: /
-    ingressclass.kubernetes.io/is-default-class: “true”
 spec:
   rules:
-  - host: frontend.211.252.87.34.nip.io
+  - host: frontend.yyazi.duckdns.org
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: frontend-server
+            name: frontend
             port:
               number: 80
