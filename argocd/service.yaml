@@ -11,4 +11,4 @@ spec:
     name: http
   selector:	
     app: employee-frontend
-  type: NodePort
+  type: ClusterIP
