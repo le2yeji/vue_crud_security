@@ -16,7 +16,8 @@ spec:
       containers:
       - name: canary-rollouts-demo
         #image: particule/simplecolorapi:1.0
-        image: ghcr.io/shclub/vue3:v2
+        #image: ghcr.io/shclub/vue3:v2
+        image: yyazi/vue_cred_v2
         imagePullPolicy: Always
         env:
           - name: BACKEND_API_URL
