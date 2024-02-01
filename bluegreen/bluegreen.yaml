@@ -16,46 +16,53 @@ spec:
         app: rollout-bluegreen
     spec:
       containers:
-      - name: rollouts-demo
+      - name: frontend
         #image: argoproj/rollouts-demo:blue
-        image: argoproj/rollouts-demo:green
+        #image: argoproj/rollouts-demo:green
+        image: yyazi/vue_crud
+        #image: ghcr.io/shclub/vue3:v1
         imagePullPolicy: Always
+        env:
+          - name: BACKEND_API_URL
+            value: "backend"
         ports:
         - containerPort: 8080
   strategy:
     blueGreen: 
       #activeService는 이전의 배포된 Blue 서비스
-      activeService: rollout-bluegreen-active
+      activeService: frontend-service
       
       #previewService는 새롭게 배포될 Green 서비스
-      previewService: rollout-bluegreen-preview
+      previewService: frontend-service-preview
       
       #autoPromotioEnabled 옵션은 Blue/Green 배포를 자동으로 진행할 것인지 여부. false 옵션을 사용해 수동으로 지정
       autoPromotionEnabled: false
 
 ---
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
-  name: rollout-bluegreen-active
+  name: frontend-service
 spec:
   selector:
     app: rollout-bluegreen
   ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 8080
+    - protocol: TCP
+      port: 80
+      name: http
+      targetPort: 80
   type: NodePort
 ---
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
-  name: rollout-bluegreen-preview
+  name: frontend-service-preview
 spec:
   selector:
     app: rollout-bluegreen
   ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 8080
+    - protocol: TCP
+      port: 80
+      name: http
+      targetPort: 80
   type: NodePort
