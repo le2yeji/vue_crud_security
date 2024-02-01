@@ -19,8 +19,8 @@ spec:
       - name: frontend
         #image: argoproj/rollouts-demo:blue
         #image: argoproj/rollouts-demo:green
-        image: yyazi/vue_crud
-        #image: ghcr.io/shclub/vue3:v1
+        #image: yyazi/vue_crud
+        image: ghcr.io/shclub/vue3:v2
         imagePullPolicy: Always
         env:
           - name: BACKEND_API_URL
