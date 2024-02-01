@@ -15,10 +15,14 @@ spec:
     spec:
       containers:
       - name: canary-rollouts-demo
-        image: particule/simplecolorapi:1.0
+        #image: particule/simplecolorapi:1.0
+        image: ghcr.io/shclub/vue3:v2
         imagePullPolicy: Always
+        env:
+          - name: BACKEND_API_URL
+            value: "backend"
         ports:
-        - containerPort: 5000
+        - containerPort: 8080
   strategy:
     canary:
       maxSurge: "25%"
@@ -27,16 +31,16 @@ spec:
       - setWeight: 25
       - pause: {}
 ---
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
-  name: canary-service
+  name: frontend-service
 spec:
   selector:
-    app: canary
+    app: canary-rollout
   ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 5000
-    nodePort: 30083
+    - protocol: TCP
+      port: 80
+      name: http
+      targetPort: 80
   type: NodePort
