@@ -46,7 +46,7 @@ const onSubmit = async () => {
             type="password"
             v-model="password"
             label="Password *"
-            hint="for test: test"
+            hint="for test: test bluegreen/canary test"
             lazy-rules
             :rules="[(val) => (val !== null && val !== '') || 'Please type your password']"
           />
